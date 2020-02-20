@@ -16,32 +16,23 @@ int main(int argc, char** argv) {
     // 1. init SeqList to all 1
     SeqList list = initSeqList(n);
     for (int i = 0; i < list.capacity; i++) {
-        list = add(list, 1, 0);
+        list = add(list, list.capacity - i, 0);
     }
     displaySeqList(list);
 
-    // 2. 计数置0 
-    unsigned int curr_pos = 0;
+    // 2. 循环计数，遇到m则将这个元素删除
+    unsigned int curr_pos = 0; // 当前位置
     while(list.length) {
         int count = 0;
         while(1) {
-            /*
-            printf("count is %d\n", count);
-            printf("curr_pos is %d\n", curr_pos);
-            */
-            //sleep(2);
-            if (list.head[curr_pos] == 1) {
-                count++;
-                if (count == m) {
-                    break;
-                }
+            count++;
+            if (count == m) {
+                break;
             }
-            curr_pos = (curr_pos + 1) % list.capacity;
+            curr_pos = (curr_pos + 1) % list.length;
         }
-        printf("%5d", curr_pos);
-        list.head[curr_pos] = 0;
-        list.length--;
-        curr_pos = (curr_pos + 1) % list.capacity;
+        printf("%5d", list.head[curr_pos]);
+        list = delete(list, curr_pos);
     }
     printf("\n");
 }
