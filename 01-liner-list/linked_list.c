@@ -241,20 +241,22 @@ void add_circle_linked_list(CircleLinkedNode* head, int elem, int pos) {
     CircleLinkedNode *add = (CircleLinkedNode *)malloc(sizeof(CircleLinkedNode));
     add->elem = elem;
 
-    // 如果是第一个元素，则该新增元素的next指向自己
-    if (head->next == NULL) {
+    // 在第一个位置插入
+    if (pos == 0) {
+        // 当前链表为空，则需要将add的next指向自己
+        if (head->next == NULL) {
+            add->next = add;
+        } else {
+            // 当前链表不为空，需要将组后一个节点的next指向add
+            CircleLinkedNode* last = find_last_node(head);
+            last->next = add;
+            add->next = head->next;
+        }
         head->next = add;
-        add->next = add;
-    } else if (pos == 0) {
-        // 插入第一个位置，需要将最后一个元素的next指向这个新增的元素
-        // 找到最后一个元素
-        CircleLinkedNode* last = find_last_node(head);
-        add->next = temp->next;
-        head->next = add;
-        last->next = add;
     } else {
-        add->next = temp->next;//将新结点的next指向上一个结点原来的next
-        temp->next = add;//将上一个结点指向新结点
+        // 并非第一个位置
+        add->next = temp->next; // 将新结点的next指向上一个结点原来的next
+        temp->next = add; // 将上一个结点的next指向新结点
     }
     head->elem++;//表长度+1
 }
@@ -302,7 +304,6 @@ void delete_circle_linked_list(CircleLinkedNode *head, int pos) {
 
     free(del); // 释放内存
     del = NULL;
-
     head->elem--; // 表长度-1
 }
 

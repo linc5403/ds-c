@@ -20,7 +20,7 @@
 #include "linked_list.h"
 
 #if 1
-// josephus_seq
+// josephus_circle
 int main(int argc, char** argv) {
     if (argc != 3) {
         printf("Usage  : %s total interval\n", argv[0]);
@@ -56,6 +56,7 @@ int main(int argc, char** argv) {
         curr_pos = t;
     }
     printf("\n");
+    return 0;
 }
 
 #else
@@ -70,8 +71,6 @@ int main() {
         int pos = search_circle_linked_list(head, i);
         printf("find %d at pos %d\n", i, pos);
     }
-
-
 
     for (int i = 0; i < 10; i++) {
         display_circle_linked_list(head);
