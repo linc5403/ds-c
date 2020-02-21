@@ -380,4 +380,3 @@ void free_circle_linked_list(CircleLinkedNode *head) {
     free(head);
     head = NULL;
 }
-
