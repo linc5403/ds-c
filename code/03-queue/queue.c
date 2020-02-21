@@ -19,6 +19,7 @@ void enqueue(Queue* q, int elem) {
     if (q->tail) {
         // 如果q->tail不是空，表示这个队列里面有元素
         q->tail->next = new_node;
+        q->tail = new_node;
     } else {
         // 否则表示当前队列是空的
         q->head = new_node;
@@ -46,8 +47,23 @@ int dequeue(Queue* q) {
         // 不止一个元素，所以只需要将第一个节点出队列即可
         Node* t = q->head;
         q->head = q->head->next;
-        r = t->next;
+        r = t->elem;
         free(t);
     }
     return r;
+}
+
+int is_empty(Queue* q) {
+    return (q->head == NULL);
+}
+
+
+void destroy_queue(Queue* q){
+    Node* head = q->head;
+    while(head) {
+        Node* t = head->next;
+        free(head);
+        head = t;
+    }
+    free(q);
 }

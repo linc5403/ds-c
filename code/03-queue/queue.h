@@ -9,6 +9,8 @@ typedef struct queue {
 } Queue;
 
 Queue* init_queue(void);
+void destroy_queue(Queue* q);
 
 void enqueue(Queue* q, int elem);
 int dequeue(Queue* q);
+int is_empty(Queue* q);
