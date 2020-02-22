@@ -22,6 +22,7 @@ typedef enum {ROOT=0, LEFT=1, RIGHT=2} POSITION;
 #define ROOT 0
 
 typedef struct treeNode {
+    int level;
     char* val;
     struct treeNode* l;
     struct treeNode* r;
@@ -29,9 +30,12 @@ typedef struct treeNode {
 
 typedef struct {
     TreeNode* root;
+    int height;
 } BinaryTree;
 
 BinaryTree* create_tree(void);
 void insert(BinaryTree* t, char* val);
 void display_tree(TreeNode* root);
 void display_tree_post(TreeNode* root);
+void print_tree(BinaryTree* tree);
+int count_node(TreeNode* node);

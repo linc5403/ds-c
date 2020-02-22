@@ -46,6 +46,12 @@ int main() {
     printf("================后缀表达式==============\n");
     display_tree_post(tree->root);
     printf("\n");
+
+    printf("================树图（右旋90度）==============\n");
+    print_tree(tree);
+    printf("\n");
+    int i = count_node(tree->root);
+    printf("tree has %d node\n", i);
     return 0;
 }
 

@@ -23,6 +23,8 @@
 
 TreeNode* find_position(TreeNode* t);
 int is_tree_empty(BinaryTree* t);
+void print_node_by_level(TreeNode* node);
+void print_node_pretty(TreeNode* root);
 
 int is_tree_empty(BinaryTree* t) {
     return t->root == NULL;
@@ -58,6 +60,7 @@ TreeNode* find_position(TreeNode* t) {
 BinaryTree* create_tree(void) {
     BinaryTree* t = malloc(sizeof(BinaryTree));
     t->root = NULL;
+    t->height = 0;
     return t;
 }
 
@@ -67,7 +70,9 @@ void insert(BinaryTree* t, char* val) {
     n->val = val;
 
     if (is_tree_empty(t)) {
+        n->level = 0;
         t->root = n;
+        t->height = 1;
         return;
     }
 
@@ -76,6 +81,10 @@ void insert(BinaryTree* t, char* val) {
         p->r = n;
     } else {
         p->l = n;
+    }
+    n->level = p->level + 1;
+    if (n->level + 1 > t->height) {
+        t->height = n->level + 1;
     }
 }
 
@@ -111,4 +120,40 @@ void display_tree_post(TreeNode* root) {
     }
 
     printf("%s ", root->val);
+}
+
+
+void print_node_by_level(TreeNode* node) {
+    if (node->r) {
+        print_node_by_level(node->r);
+    }
+
+    for (int i = 0; i < node->level; i++) {
+        printf("    ");
+    }
+
+    printf("%s \n", node->val);
+
+    if (node->l) {
+        print_node_by_level(node->l);
+    }
+}
+
+void print_tree(BinaryTree* tree) {
+    if (tree->root == NULL) {
+        printf("empty tree\n");
+        return;
+    }
+    print_node_by_level(tree->root);
+}
+
+int count_node(TreeNode* node) {
+    int i = 1;
+    if (node->l) {
+        i = i + count_node(node->l);
+    }
+    if (node->r) {
+        i = i + count_node(node->r);
+    }
+    return i;
 }
