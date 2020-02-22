@@ -95,3 +95,20 @@ void display_tree(TreeNode* root) {
         display_tree(root->r);
     }
 }
+
+void display_tree_post(TreeNode* root) {
+    if (root == NULL) {
+        printf("empty tree\n");
+        return;
+    }
+
+    if (root->l) {
+        display_tree_post(root->l);
+    }
+
+    if (root->r) {
+        display_tree_post(root->r);
+    }
+
+    printf("%s ", root->val);
+}

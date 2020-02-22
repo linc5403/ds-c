@@ -34,3 +34,4 @@ typedef struct {
 BinaryTree* create_tree(void);
 void insert(BinaryTree* t, char* val);
 void display_tree(TreeNode* root);
+void display_tree_post(TreeNode* root);

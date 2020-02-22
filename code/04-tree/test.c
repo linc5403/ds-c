@@ -23,8 +23,8 @@
 #include "tree.h"
 #include "util.h"
 
-char *INPUT[] =  { "1", "+", "2", "-", "3", "+", "4", "-", "5"};
-// char *INPUT[] =  { "3", "+", "4", "*", "2", "-", "5", "*", "3"};
+// char *INPUT[] =  { "1", "+", "2", "-", "3", "+", "4", "-", "5"};
+char *INPUT[] =  { "3", "+", "4", "*", "2", "-", "5", "*", "3"};
 
 StrStack* middle2post(char** input, unsigned int input_len);
 
@@ -39,9 +39,13 @@ int main() {
         insert(tree, pop(post));
     }
 
+    printf("================中缀表达式==============\n");
     display_tree(tree->root);
     printf("\n");
 
+    printf("================后缀表达式==============\n");
+    display_tree_post(tree->root);
+    printf("\n");
     return 0;
 }
 
