@@ -51,7 +51,7 @@ int main() {
     print_tree(tree);
     printf("\n");
     int i = count_node(tree->root);
-    printf("tree has %d node\n", i);
+    printf("tree has %d nodes\n", i);
     return 0;
 }
 
