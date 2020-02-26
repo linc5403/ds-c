@@ -31,9 +31,13 @@ int is_tree_empty(BinaryTree* t) {
 }
 
 TreeNode* find_position(TreeNode* t) {
+    // 1. 先右后左
+    // 2. 只能挂在符号下面
     if (is_operand(t->val)) {
         return NULL;
     }
+
+    // 当前节点是符号
     // 找这个节点的右节点
     if (t->r == NULL) {
         return t;
