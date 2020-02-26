@@ -20,8 +20,20 @@
 
 #include "list.h"
 
+
+#define RED   "\x1B[31m"
+#define GRN   "\x1B[32m"
+#define YEL   "\x1B[33m"
+#define BLU   "\x1B[34m"
+#define MAG   "\x1B[35m"
+#define CYN   "\x1B[36m"
+#define WHT   "\x1B[37m"
+#define RESET "\x1B[0m"
+
+
 List* init_list(void) {
     List* plist = malloc(sizeof(List));
+    plist->head = NULL;
     return plist;
 }
 
@@ -49,6 +61,7 @@ void insert_at_head(List* l, int val) {
     } else {
         new_node->pre = NULL;
         new_node->next = head;
+        head->pre = new_node;
         l->head = new_node;
     }
     return;
@@ -171,12 +184,18 @@ void print_list(List* l) {
     } else {
         while(h) {
             i++;
-            printf("%4d", h->val);
+            if (h->sorted) {
+                printf("%s%4d%s", GRN, h->val, RESET);
+            } else {
+                printf("%4d", h->val);
+            }
             h = h->next;
             if (i%10 == 0) {
                 printf("\n");
             }
         }
-        printf("\n");
+        if (i % 10 ) {
+            printf("\n");
+        }
     }
 }

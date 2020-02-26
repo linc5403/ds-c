@@ -42,7 +42,7 @@ int main(int argc, char** argv) {
     print_list(l);
 
     bubble_sort(l);
-    print_list(l);
 
+    print_list(l);
     return 0;
 }
