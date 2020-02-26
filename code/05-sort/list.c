@@ -68,21 +68,21 @@ void insert_at_head(List* l, int val) {
 }
 
 void insert_at_tail(List* l, int val) {
-    Node* head = l->head;
+    Node* p = l->head;
     Node* new_node = malloc(sizeof(Node));
     new_node->val = val;
     new_node->sorted = 0;
 
-    if (head == NULL) {
+    if (p == NULL) {
         new_node->pre = NULL;
         new_node->next = NULL;
         l->head = new_node;
     } else {
-        while(head->next != NULL) {
-            head = head->next;
+        while(p->next != NULL) {
+            p = p->next;
         }
-        head->next = new_node;
-        new_node->pre = head;
+        p->next = new_node;
+        new_node->pre = p;
         new_node->next = NULL;
     }
     return;
