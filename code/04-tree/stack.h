@@ -44,5 +44,6 @@ void display_stack(StrStack* s);
  * ============================================================================
  */
 int higherPriority(StrStack* stack);
+StrStack* middle2post(char* input[], unsigned int input_len);
 
 #endif

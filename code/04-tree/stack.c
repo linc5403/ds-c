@@ -19,6 +19,7 @@
 #include <stdlib.h>
 
 #include "stack.h"
+#include "util.h"
 
 StrStack* init_stack(void) {
     StrStack* h = malloc(sizeof(StrStack));
@@ -91,3 +92,40 @@ void display_stack(StrStack* s) {
     }
     printf("\n");
 }
+
+
+/* 
+ * ===  FUNCTION  =============================================================
+ *         Name:  middle2post
+ *  Description:  中缀表达式转后缀表达式
+ * ============================================================================
+ */
+StrStack* middle2post(char* input[], unsigned int input_len) {
+    StrStack* operator = init_stack();
+    StrStack* post = init_stack();
+    for (int i = 0; i < input_len; i++) {
+        if (is_operand(input[i])) {
+            // 操作数的处理
+            // 1. 入后缀表达式栈
+            push(post, input[i]);
+            // 2. 如果操作符栈里面的top元素优先级比下面一个元素高，则将该操作符出栈并防到post栈中
+            if (higherPriority(operator)) {
+                char* t = pop(operator);
+                push(post, t);
+            }
+        } else {
+            // 操作符直接入operator栈
+            push(operator, input[i]);
+        }
+    }
+    // 将operator中的所有元素弹出到post栈中
+    while(!is_empty(operator)) {
+        char* t = pop(operator);
+        push(post, t);
+    }
+
+    // 释放operator栈
+    free_stack(operator);
+    return post;
+}
+
