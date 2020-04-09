@@ -243,11 +243,11 @@ void add_circle_linked_list(CircleLinkedNode* head, int elem, int pos) {
 
     // 在第一个位置插入
     if (pos == 0) {
-        // 当前链表为空，则需要将add的next指向自己
         if (head->next == NULL) {
+            // 当前链表为空，则需要将add的next指向自己
             add->next = add;
         } else {
-            // 当前链表不为空，需要将组后一个节点的next指向add
+            // 当前链表不为空，需要将最后一个节点的next指向add
             CircleLinkedNode* last = find_last_node(head);
             last->next = add;
             add->next = head->next;
