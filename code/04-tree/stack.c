@@ -63,7 +63,7 @@ int higherPriority(char* curr, StrStack* stack) {
 
     char* top = peep(stack);
 
-    // 只有当top的运算符是*和/，下一个节点是+或-的时候才返回1
+    // 只有当curr的运算符是*和/，top是+或-的时候才返回0
     if ((curr[0] == '*' || curr[0] == '/') && (top[0] == '+' || top[0] == '-')) {
         return 0;
     }
