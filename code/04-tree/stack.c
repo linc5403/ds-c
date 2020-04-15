@@ -54,26 +54,20 @@ char* peep(StrStack* stack) {
     }
 }
 
-int higherPriority(StrStack* stack) {
+int higherPriority(char* curr, StrStack* stack) {
     Node* head = stack->head;
     if (head == NULL) {
         // 空栈，返回0
         return 0;
     }
 
-    if (head->next == NULL) {
-        // 只有一个节点，返回0
-        return 0;
-    }
-
-    char* top = head->val;
-    char* sec = head->next->val;
+    char* top = peep(stack);
 
     // 只有当top的运算符是*和/，下一个节点是+或-的时候才返回1
-    if ((top[0] == '*' || top[0] == '/') && (sec[0] == '+' || sec[0] == '-')) {
-        return 1;
+    if ((curr[0] == '*' || curr[0] == '/') && (top[0] == '+' || top[0] == '-')) {
+        return 0;
     }
-    return 0;
+    return 1;
 }
 
 void free_stack(StrStack* s) {
@@ -106,15 +100,15 @@ StrStack* middle2post(char* input[], unsigned int input_len) {
     for (int i = 0; i < input_len; i++) {
         if (is_operand(input[i])) {
             // 操作数的处理
-            // 1. 入后缀表达式栈
+            // 入后缀表达式栈
             push(post, input[i]);
-            // 2. 如果操作符栈里面的top元素优先级比下面一个元素高，则将该操作符出栈并防到post栈中
-            if (higherPriority(operator)) {
-                char* t = pop(operator);
-                push(post, t);
-            }
         } else {
-            // 操作符直接入operator栈
+            // 操作符需要判断是否比栈里面的优先级高
+            // 如果栈里面的元素优先级更高需要将栈里的元素弹出到后缀栈
+            while( higherPriority(input[i], operator) ) {
+                char* out = pop(operator);
+                push(post, out);
+            }
             push(operator, input[i]);
         }
     }

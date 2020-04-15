@@ -43,7 +43,7 @@ void display_stack(StrStack* s);
  *  Description:  stack中栈顶操作符比下面的操作符优先级高则返回1，否则返回0
  * ============================================================================
  */
-int higherPriority(StrStack* stack);
+int higherPriority(char* curr, StrStack* stack);
 StrStack* middle2post(char* input[], unsigned int input_len);
 
 #endif

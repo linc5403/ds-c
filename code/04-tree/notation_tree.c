@@ -24,7 +24,7 @@
 
 int main() {
     // char *INPUT[] =  { "1", "+", "2", "-", "3", "+", "4", "-", "5"};
-    char *INPUT[] =  { "3", "+", "4", "*", "2", "-", "5", "*", "3"};
+    char *INPUT[] =  { "3", "-", "4", "*", "2", "-", "5", "*", "3"};
     unsigned int input_len = sizeof(INPUT) / sizeof(INPUT[0]);
 
     // 中缀转为后缀
@@ -45,9 +45,10 @@ int main() {
     display_tree_post(tree->root);
     printf("\n");
 
-    printf("================树图（右旋90度）==============\n");
+    printf("================树图（左旋90度）==============\n");
     print_tree(tree);
     printf("\n");
+
     int i = count_node(tree->root);
     printf("tree has %d nodes\n", i);
     return 0;
