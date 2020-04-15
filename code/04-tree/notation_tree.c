@@ -26,7 +26,7 @@ int main() {
     // char *INPUT[] =  { "1", "+", "2", "-", "3", "+", "4", "-", "5"};
     char *INPUT[] =  { "3", "-", "4", "*", "2", "-", "5", "*", "3"};
     unsigned int input_len = sizeof(INPUT) / sizeof(INPUT[0]);
-
+    
     // 中缀转为后缀
     StrStack* post = middle2post(INPUT, input_len);
     display_stack(post);
