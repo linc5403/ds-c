@@ -105,5 +105,3 @@ int is_empty(Stack* head) {
     return (head->next == NULL)?1:0;
 }
 
-
-

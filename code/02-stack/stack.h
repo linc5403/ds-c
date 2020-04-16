@@ -22,7 +22,7 @@
 typedef struct stack{
     int elem;
     struct stack *next;
-} Stack;
+} Stack, Queue;
 
 Stack* init_statck(void);
 void free_stack(Stack* head);
