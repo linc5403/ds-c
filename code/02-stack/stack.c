@@ -21,7 +21,7 @@
 
 #include "stack.h"
 
-Stack* init_statck(void) {
+Stack* init_stack(void) {
     Stack* head = malloc(sizeof(Stack));
     head->next = NULL;
     return head;

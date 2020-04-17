@@ -24,7 +24,7 @@ typedef struct stack{
     struct stack *next;
 } Stack, Queue;
 
-Stack* init_statck(void);
+Stack* init_stack(void);
 void free_stack(Stack* head);
 int push(Stack* head, int elem);
 int pop(Stack* head);

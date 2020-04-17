@@ -34,7 +34,7 @@ int main() {
 }
 
 int evalRPN(char ** tokens, int tokensSize){
-    Stack* head = init_statck();
+    Stack* head = init_stack();
     for (int i = 0; i < tokensSize; i++) {
         if (is_operand(tokens[i])) {
             // 是操作数, 入栈
