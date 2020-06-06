@@ -8,3 +8,8 @@
 !Makefile
 !*.dat
 !.gitignore
+!*.svg
+!*.png
+!*.jpg
+!*.org
+!*.md
