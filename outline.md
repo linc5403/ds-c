@@ -1,18 +1,18 @@
 
 # Table of Contents
 
-1.  [数据结构和算法](#orge548bf8)
-    1.  [课程安排](#org2b76efb)
-    2.  [学习路线](#org37fdd6a)
-    3.  [学习方法](#orgd87ed63)
+1.  [数据结构和算法](#org00f6e47)
+    1.  [课程安排](#org86fc6b3)
+    2.  [学习路线](#orgb256efa)
+    3.  [学习方法](#org409ffe9)
 
 
-<a id="orge548bf8"></a>
+<a id="org00f6e47"></a>
 
 # 数据结构和算法
 
 
-<a id="org2b76efb"></a>
+<a id="org86fc6b3"></a>
 
 ## 课程安排
 
@@ -89,17 +89,17 @@
 </table>
 
 
-<a id="org37fdd6a"></a>
+<a id="orgb256efa"></a>
 
 ## 学习路线
 
 ![img](./img/overview.svg)
 
 
-<a id="orgd87ed63"></a>
+<a id="org409ffe9"></a>
 
 ## 学习方法
 
--   思想优先于编码
--   模仿优先于创新
+-   思想高于编码
+-   创新基于模仿
 
