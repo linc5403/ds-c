@@ -24,9 +24,12 @@ typedef struct node {
 } Node, LinkedList;
 
 LinkedList* initLinkedList(void);
-void insertLinkedList(LinkedList* l,int value, int pos);
-void printLinkedList(LinkedList* l);
 Node* find(LinkedList* l, int pos);
+void insertLinkedList(LinkedList* l,int value, int pos);
+void deleteLinkedList(LinkedList* l, int pos);
+Node* search(LinkedList* l, int value);
+void modify(LinkedList* l, int pos, int value);
+void printLinkedList(LinkedList* l);
 
 int main() {
     LinkedList* head = initLinkedList();    
@@ -44,7 +47,6 @@ LinkedList* initLinkedList() {
     head->next = NULL;
     return head;
 }
-
 
 void insertLinkedList(LinkedList* l,int value, int pos) {
     if (pos > l->elem || pos < 0) {
@@ -87,4 +89,42 @@ void printLinkedList(LinkedList* l) {
         temp = temp->next;
     }
     printf("\n");
+}
+
+void deleteLinkedList(LinkedList* l, int pos) {
+    if (pos >= l->elem || pos < 0) {
+        // 非法的位置
+        printf("pos: %d 非法，length为: %d\n", pos, l->elem);
+        return;
+    }
+
+    Node* pre;
+    if (pos == 0) {
+        pre = l;
+    } else {
+        pre = find(l, pos-1);
+    }
+
+    pre->next = pre->next->next;
+    l->elem--;
+}
+
+Node* search(LinkedList* l, int value) {
+    Node* t = l->next;
+    while(t != NULL) {
+        if (t->elem == value)
+            return t;
+        t = t->next;
+    }
+    return NULL;
+}
+
+void modify(LinkedList* l, int pos, int value) {
+    if (pos < 0 || pos >= l->elem) {
+        // 非法的位置
+        printf("pos: %d 非法，length为: %d\n", pos, l->elem);
+        return;
+    }
+    Node* t = find(l, pos);
+    t->elem = value;
 }

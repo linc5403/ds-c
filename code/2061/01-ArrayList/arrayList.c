@@ -27,6 +27,11 @@ typedef struct arrayList {
 ArrayList initArrayList(int capacity);
 void printArrayList(ArrayList l);
 void insert(ArrayList *l, int value, int pos);
+void delete(ArrayList *l, int pos);
+// 在ArrayList中查找值为value的元素，如果存在返回其下标
+int search(ArrayList *l, int value);
+void modify(ArrayList *l, int pos, int value);
+
 
 ArrayList initArrayList(int capacity) {
     ArrayList l;
