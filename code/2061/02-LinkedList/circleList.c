@@ -29,14 +29,15 @@ void addAtTail(CircleList* l, int value);
 void print(CircleList* l);
 void print2(CircleList* l);
 Node* getTail(CircleList* l);
+void josephus(CircleList *l, int num);
 
 int main() {
     CircleList* l = init();
-    addAtHead(l, 100);
-    addAtHead(l, 200);
-    addAtHead(l, 300);
-    addAtHead(l, 400);
-    print(l);
+    for (int i = 6; i>0; i--) {
+        addAtHead(l, i);
+    }
+    print2(l);
+    josephus(l, 4);
     return 0;
 }
 
@@ -102,4 +103,23 @@ void print2(CircleList* l) {
     }
     printf("%4d", p->elem);
     printf("\n");
+}
+
+
+void josephus(CircleList* l, int num) {
+    int i = 1;
+    Node* p = l->next;
+    while(l->elem != 0) {
+        // 找出第num个元素，打印，并删除
+        while(i != num-1) {
+            p = p->next;
+            i++;
+        }
+        printf("%4d\n", p->next->elem);
+        p->next = p->next->next;
+        p = p->next;
+        l->elem--;
+        i = 1;
+    }
+    l->next = NULL;
 }
