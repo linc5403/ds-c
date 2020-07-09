@@ -25,7 +25,7 @@ typedef struct node {
 
 Tree* init(void);
 Tree* insert(Tree* root, int value);
-Tree* search(Tree* root, int value);
+Node* search(Tree* root, int value);
 void print(Tree* root);
 void print_nicely(Tree* root);
 
@@ -108,8 +108,7 @@ void print_nicely(Tree* root) {
     printf("\n");
 }
 
-
-Tree* search(Tree* root, int value) {
+Node* search(Tree* root, int value) {
     if (root == NULL)
         return NULL;
 
