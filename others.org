@@ -9,7 +9,7 @@
 *** HeapSort
     堆排序使用"堆"的数据结构, 在数组中排序 *完全二叉树*
 
-**** 排序完全二叉树
+    排序完全二叉树
    
 **** 完全二叉树的定义
 
@@ -54,7 +54,9 @@
    
       #+RESULTS:
       [[file:./img/flow1.png]]
+
       在上述的Heap中新增节点12的示意如下:
+
     
       [[file:./img/c06f008.jpg]]
    
@@ -62,7 +64,8 @@
       2. 12比其父节点9大, 交换12和9
       3. 交换后12比其父节点10大, 交换12和10;
       4. 12 <= 其父节点15, 新增过程结束
-    
+   
+ 
       [[file:./img/c06f009.jpg]]
    
 ***** 数组转换为堆 
@@ -194,13 +197,116 @@
 
       因此, HeapSort的时间复杂度为N*log(N) + N*log(N); 亦即N*log(N)
 
-
 ** Sub O(N*log(N))
    对于N个元素的比较排序, 算法的时间复杂度不可能小于N*log(N), 但是非比较排序则可能低于这个量级.
 
 *** CountingSort
-    对于要排序的元素其分布在一个较小的区间中时, 可使用CountingSort.
-   
+    对于要排序的元素其分布在一个较小的区间中时, 可使用CountingSort. 因为只是对于数字的排序, 所以没有多大的使用价值.
+    
+    其思想是: 先建议一个以Value为索引的数组, 遍历数据, 将对应的Value数组做+1操作; 再遍历Value数组, 将值写回到原来数组.
+
+    #+begin_example
+      Countingsort(Integer: values[], Integer: max_value)
+	  // Make an array to hold the counts.
+	  Integer: counts[0 To max_value]
+ 
+	  // Initialize the array to hold the counts.
+	  // (This is not necessary in all programming languages.)
+	  For i = 0 To max_value
+	      counts[i] = 0
+	  Next i
+ 
+	  // Count the items with each value.
+	  For i = 0 To <length of values> - 1
+	      // Add 1 to the count for this value.
+	      counts[values[i]] = counts[values[i]] + 1
+	  Next i
+ 
+	  // Copy the values back into the array.
+	  Integer: index = 0
+	  For i = 0 To max_value
+	      // Copy the value i into the array counts[i] times.
+	      For j = 1 To counts[i]
+		  values[index] = i
+		  index = index + 1
+	      Next j
+	  Next i
+      End Countingsort 
+    #+end_example
+
+    时间复杂度为O(2*N + M) = O(N), 远低于O(N*log(N)).
+
+*** PIGEONHOLE SORT(鸽巢排序)
+    
+    使用Value的数量进行索引, 然后挂链表; 与CountingSort的区别:
+
+    1. 可以保存对象
+    2. 减小空间
+
+    #+begin_example
+      PigeonholeSort(Integer: values[], Integer: max)
+	  // Make the pigeonholes.
+	  Cell: pigeonholes[] = new Cell[max + 1]
+ 
+	  // Initialize the linked lists.
+	  // O(M)
+	  For i = 0 To max
+	      pigeonholes[i] = null
+	  Next i
+ 
+	  // Move items into the pigeonholes.
+	  // O(N)
+	  For Each value in values
+	      // Add this item to its pigeonhole.
+	      Cell: cell = new Cell(value)
+	      cell.Next = pigeonholes[value]
+	      pigeonholes[value] = cell
+	  Next value
+ 
+	  // Copy the items back into the values array.
+	  Integer: index = 0
+	  // O(M+N)
+	  For i = 0 To max
+	      // Copy the items in pigeonhole i into the values array.
+	      Cell: cell = pigeonholes[i]
+	      While (cell != null)
+		  values[index] = cell.Value
+		  index++
+		  cell = cell.Next
+	      End While
+	  Next i
+      End PigeonholeSort 
+    #+end_example
+
+    时间复杂度: O(N)
+
+*** BucketSort
+
+    #+begin_example
+      Bucketsort(Data: values[])
+	  <Make buckets.>
+	  <Distribute the items into the buckets.>
+	  <Sort the buckets.>
+	  <Gather the bucket values back into the original array.>
+      End Bucketsort 
+    #+end_example
+    
+    [[file:./img/c06f012.jpg]]
+
+    Bucketsort moves items into buckets, sorts the buckets, and then concatenates the buckets to get the sorted result.
+
+    桶排序的关键点在于桶的数量, 如果我们假设桶的数量(M)正比于要排序的元素个数(N), 那么每个桶里面分布的元素个数(N/M)是大致固定的.
+
+    再假设每个桶中N/M排序所需运算次数为F(N/M), 则该值为以常量值, 则总共的排序时间复杂度为:
+
+    O(N) + O(M*F(N/M)) + O(N) = O(N+M) = O(N)
+
+    注意: 桶的数目M不能过小, 否则失去桶排序的意义.
+    
+*** RadixSort
+    [[file:./img/IEZs8xJML3-radixsort_ed.png]]
+
+    Radix sort takes in a list of n integers which are in base b (the radix) and so each number has at most d digits where d = \lfloor(\log_b(k) +1)\rfloor and k is the largest number in the list. For example, three digits are needed to represent decimal 104 (in base 10). It is important that radix sort can work with any base since the running time of the algorithm, O(d(n+b)), depends on the base it uses.
 * Search
 
 ** Linear Search

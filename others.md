@@ -1,73 +1,76 @@
 
 # Table of Contents
 
-1.  [Sort](#org6c9e71f)
-    1.  [O(N<sup>2</sup>))](#org99cb59f)
-        1.  [SelectSort](#org8db32aa)
-        2.  [InsertSort](#orgf135cb7)
-        3.  [BubbleSort](#orgfb4b60e)
-    2.  [O(N\*log(N))](#org620dfcb)
-        1.  [QuickSort](#orgf15eae9)
-        2.  [MergeSort](#orga27536d)
-        3.  [HeapSort](#orgcbb7043)
-    3.  [Sub O(N\*log(N))](#org6e0d2b2)
-        1.  [CountingSort](#org2d40f98)
-2.  [Search](#org5762c42)
-    1.  [Linear Search](#org0f31dfe)
-    2.  [Binary Search](#orgc160a08)
-    3.  [Interpolation Search(插值搜索)](#orge964209)
-    4.  [Majority Voting](#org93cf329)
+1.  [Sort](#org529c9b5)
+    1.  [O(N<sup>2</sup>))](#orge851c8a)
+        1.  [SelectSort](#org5e60333)
+        2.  [InsertSort](#org22d5244)
+        3.  [BubbleSort](#org3500aca)
+    2.  [O(N\*log(N))](#org674806b)
+        1.  [QuickSort](#orga521f14)
+        2.  [MergeSort](#orge82677c)
+        3.  [HeapSort](#orga29fc72)
+    3.  [Sub O(N\*log(N))](#org82ebead)
+        1.  [CountingSort](#org68c0d55)
+        2.  [PIGEONHOLE SORT(鸽巢排序)](#org36cde65)
+        3.  [BucketSort](#org1ae8e9d)
+        4.  [RadixSort](#org81645c1)
+2.  [Search](#org5d487c9)
+    1.  [Linear Search](#org867f904)
+    2.  [Binary Search](#orgfc6e675)
+    3.  [Interpolation Search(插值搜索)](#org6508d8d)
+    4.  [Majority Voting](#org54b0d76)
 
 
-<a id="org6c9e71f"></a>
+<a id="org529c9b5"></a>
 
 # Sort
 
 
-<a id="org99cb59f"></a>
+<a id="orge851c8a"></a>
 
 ## O(N<sup>2</sup>))
 
 
-<a id="org8db32aa"></a>
+<a id="org5e60333"></a>
 
 ### SelectSort
 
 
-<a id="orgf135cb7"></a>
+<a id="org22d5244"></a>
 
 ### InsertSort
 
 
-<a id="orgfb4b60e"></a>
+<a id="org3500aca"></a>
 
 ### BubbleSort
 
 
-<a id="org620dfcb"></a>
+<a id="org674806b"></a>
 
 ## O(N\*log(N))
 
 
-<a id="orgf15eae9"></a>
+<a id="orga521f14"></a>
 
 ### QuickSort
 
 
-<a id="orga27536d"></a>
+<a id="orge82677c"></a>
 
 ### MergeSort
 
 
-<a id="orgcbb7043"></a>
+<a id="orga29fc72"></a>
 
 ### HeapSort
 
 堆排序使用"堆"的数据结构, 在数组中排序 **完全二叉树**
 
-1.  排序完全二叉树
+排序完全二叉树
 
-2.  完全二叉树的定义
+1.  完全二叉树的定义
 
     -   二叉树
     -   除了最底层之外的所有节点都有两个子节点
@@ -83,7 +86,7 @@
     
     ![img](./img/c06f006.jpg)
 
-3.  Heap(堆)的定义
+2.  Heap(堆)的定义
 
     Heap是完全二叉树的一种特例-每个节点的值都大于等于它的子节点的值. 亦即对于任何一颗子树来说,它的根节点值都是该子树的最大值.
     
@@ -91,13 +94,14 @@
     
     ![img](./img/c06f007.jpg)
 
-4.  堆的操作
+3.  堆的操作
 
     1.  新增节点
     
         对于每个新节点, 将其放置在合适的位置:
         
         ![img](./img/flow1.png)
+        
         在上述的Heap中新增节点12的示意如下:
         
         ![img](./img/c06f008.jpg)
@@ -191,7 +195,7 @@
                 return result
             End RemoveTopItem 
 
-5.  HeapSort的实现
+4.  HeapSort的实现
 
     明白优先级队列的入队列和出队列操作后, 我们可以很好的理解堆排序的具体流程:
     
@@ -215,7 +219,7 @@
             Next i
         End Heapsort 
 
-6.  复杂度分析
+5.  复杂度分析
 
     1.  空间复杂度
     
@@ -234,40 +238,149 @@
         因此, HeapSort的时间复杂度为N\*log(N) + N\*log(N); 亦即N\*log(N)
 
 
-<a id="org6e0d2b2"></a>
+<a id="org82ebead"></a>
 
 ## Sub O(N\*log(N))
 
 对于N个元素的比较排序, 算法的时间复杂度不可能小于N\*log(N), 但是非比较排序则可能低于这个量级.
 
 
-<a id="org2d40f98"></a>
+<a id="org68c0d55"></a>
 
 ### CountingSort
 
-对于要排序的元素其分布在一个较小的区间中时, 可使用CountingSort.
+对于要排序的元素其分布在一个较小的区间中时, 可使用CountingSort. 因为只是对于数字的排序, 所以没有多大的使用价值.
+
+其思想是: 先建议一个以Value为索引的数组, 遍历数据, 将对应的Value数组做+1操作; 再遍历Value数组, 将值写回到原来数组.
+
+    Countingsort(Integer: values[], Integer: max_value)
+        // Make an array to hold the counts.
+        Integer: counts[0 To max_value]
+    
+        // Initialize the array to hold the counts.
+        // (This is not necessary in all programming languages.)
+        For i = 0 To max_value
+    	counts[i] = 0
+        Next i
+    
+        // Count the items with each value.
+        For i = 0 To <length of values> - 1
+    	// Add 1 to the count for this value.
+    	counts[values[i]] = counts[values[i]] + 1
+        Next i
+    
+        // Copy the values back into the array.
+        Integer: index = 0
+        For i = 0 To max_value
+    	// Copy the value i into the array counts[i] times.
+    	For j = 1 To counts[i]
+    	    values[index] = i
+    	    index = index + 1
+    	Next j
+        Next i
+    End Countingsort 
+
+时间复杂度为O(2\*N + M) = O(N), 远低于O(N\*log(N)).
 
 
-<a id="org5762c42"></a>
+<a id="org36cde65"></a>
+
+### PIGEONHOLE SORT(鸽巢排序)
+
+使用Value的数量进行索引, 然后挂链表; 与CountingSort的区别:
+
+1.  可以保存对象
+2.  减小空间
+
+    PigeonholeSort(Integer: values[], Integer: max)
+        // Make the pigeonholes.
+        Cell: pigeonholes[] = new Cell[max + 1]
+    
+        // Initialize the linked lists.
+        // O(M)
+        For i = 0 To max
+    	pigeonholes[i] = null
+        Next i
+    
+        // Move items into the pigeonholes.
+        // O(N)
+        For Each value in values
+    	// Add this item to its pigeonhole.
+    	Cell: cell = new Cell(value)
+    	cell.Next = pigeonholes[value]
+    	pigeonholes[value] = cell
+        Next value
+    
+        // Copy the items back into the values array.
+        Integer: index = 0
+        // O(M+N)
+        For i = 0 To max
+    	// Copy the items in pigeonhole i into the values array.
+    	Cell: cell = pigeonholes[i]
+    	While (cell != null)
+    	    values[index] = cell.Value
+    	    index++
+    	    cell = cell.Next
+    	End While
+        Next i
+    End PigeonholeSort 
+
+时间复杂度: O(N)
+
+
+<a id="org1ae8e9d"></a>
+
+### BucketSort
+
+    Bucketsort(Data: values[])
+        <Make buckets.>
+        <Distribute the items into the buckets.>
+        <Sort the buckets.>
+        <Gather the bucket values back into the original array.>
+    End Bucketsort 
+
+![img](./img/c06f012.jpg)
+
+Bucketsort moves items into buckets, sorts the buckets, and then concatenates the buckets to get the sorted result.
+
+桶排序的关键点在于桶的数量, 如果我们假设桶的数量(M)正比于要排序的元素个数(N), 那么每个桶里面分布的元素个数(N/M)是大致固定的.
+
+再假设每个桶中N/M排序所需运算次数为F(N/M), 则该值为以常量值, 则总共的排序时间复杂度为:
+
+O(N) + O(M\*F(N/M)) + O(N) = O(N+M) = O(N)
+
+注意: 桶的数目M不能过小, 否则失去桶排序的意义.
+
+
+<a id="org81645c1"></a>
+
+### RadixSort
+
+![img](./img/IEZs8xJML3-radixsort_ed.png)
+
+Radix sort takes in a list of n integers which are in base b (the radix) and so each number has at most d digits where d = &lfloor;(log<sub>b</sub>(k) +1)&rfloor; and k is the largest number in the list. For example, three digits are needed to represent decimal 104 (in base 10). It is important that radix sort can work with any base since the running time of the algorithm, O(d(n+b)), depends on the base it uses.
+
+
+<a id="org5d487c9"></a>
 
 # Search
 
 
-<a id="org0f31dfe"></a>
+<a id="org867f904"></a>
 
 ## Linear Search
 
 ![img](./img/c07f001.jpg)
 
 
-<a id="orgc160a08"></a>
+<a id="orgfc6e675"></a>
 
 ## Binary Search
 
 ![img](./img/c07f002.jpg)
 
 
-<a id="orge964209"></a>
+<a id="org6508d8d"></a>
 
 ## Interpolation Search(插值搜索)
 
@@ -292,7 +405,7 @@
     End InterpolationSearch 
 
 
-<a id="org93cf329"></a>
+<a id="org54b0d76"></a>
 
 ## Majority Voting
 
