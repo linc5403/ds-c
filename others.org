@@ -244,6 +244,7 @@
     2. 减小空间
 
     #+begin_example
+
       PigeonholeSort(Integer: values[], Integer: max)
 	  // Make the pigeonholes.
 	  Cell: pigeonholes[] = new Cell[max + 1]
