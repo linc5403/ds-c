@@ -82,19 +82,42 @@ void insert(Node* pl, int pos, int value) {
     pl->elem++;
 }
 
-remove(Node* curr, int num) {
+Node* removeList(Node* pl, Node* curr, int num) {
+    // 只剩下1个节点的特殊情况
+    if (pl->elem == 1) {
+        printf("remove %d\n", curr->elem);
+        pl->pNext = NULL;
+        pl->elem--;
+        return NULL;
+    }
+
     // 1. 找到上一个人
-    for (int i = 0; i < num; i++)
+    for (int i = 1; i < num-1; i++)
         curr = curr->pNext;
     // 2. 保存下一个人
+    Node* r = curr->pNext->pNext;
     // 3. 删除当前这个人
-    // 4. 返回下一个开报数的人
+    printf("remove %d\n", curr->pNext->elem);
+    if (curr->pNext == pl->pNext) {
+        pl->pNext = r;
+    }
+    curr->pNext = r;
+    // 4. 返回下一个报数的人
+    pl->elem--;
+    return r;
 }
 
 int main() {
     Node* pl = init();
     for (int i = 0; i < 6; i++) {
         insert(pl, i, i+1);
+    }
+    print(pl);
+
+    Node* t = pl->pNext;
+    while(pl->elem) {
+        printf("*****************\n");
+        t = removeList(pl, t, 4);
         print(pl);
     }
     return 0;
