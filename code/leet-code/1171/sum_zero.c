@@ -82,7 +82,6 @@ struct ListNode* removeZeroSumSublists(struct ListNode* head){
         if (n == 1) {
             sumary = subHead->val;
         }
-
         // 从subHead开始，构造不同长度的子序列，判断其和是否为0
         // if (sum(subHead, n) == 0) {
         if (sumary == 0) {
