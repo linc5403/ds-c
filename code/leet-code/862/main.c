@@ -8,6 +8,9 @@
 
 #include "LinkedQueue.h"
 
+int max_n_sub(int* a, int size, int n);
+int shortestSubarray(int* A, int ASize, int K);
+
 int max_n_sub(int* a, int size, int n) {
     int max = 0;
     int last;
