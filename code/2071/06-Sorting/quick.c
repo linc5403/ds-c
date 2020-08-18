@@ -19,8 +19,8 @@
 #include <stdio.h>
 #include <time.h>
 
-void quick(int a[], int n);
-void printArray(int a[], int n);
+#include "quick.h"
+#include "mylib.h"
 
 void quick(int a[], int n) {
     if (n <= 1)
@@ -52,12 +52,6 @@ void quick(int a[], int n) {
     // 3. 对j+1 .. n-1进行处理
     quick(a+j+1, n-(j+1));
     printArray(a, n);
-}
-
-void printArray(int a[], int n) {
-    for (int i = 0; i < n; i++)
-        printf("%4d", a[i]);
-    printf("\n");
 }
 
 int main() {
