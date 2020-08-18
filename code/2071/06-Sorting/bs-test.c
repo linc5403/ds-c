@@ -36,7 +36,7 @@ int main() {
     printArray(a, SIZE);
 
     for (int i = 0; i < SIZE; i++) {
-        int target = rand() % 10;
+        int target = rand() % 100;
         int r = bs(a, SIZE, target);
         if (r == -1)
             printf("没有找到%d\n", target);
