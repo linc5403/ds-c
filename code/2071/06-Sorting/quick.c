@@ -51,16 +51,5 @@ void quick(int a[], int n) {
     quick(a, j);
     // 3. 对j+1 .. n-1进行处理
     quick(a+j+1, n-(j+1));
-    printArray(a, n);
 }
 
-int main() {
-    int a[10];
-    srand(time(NULL));
-    for (int i = 0; i < 10; i++)
-        a[i] = rand() % 100;
-
-    printArray(a, 10);
-    quick(a, 10);
-
-}

@@ -1,13 +1,18 @@
-all: binary-search
+all: bs-test sort-test
 
-objs_sort = quick.o mylib.o
-objs_search = bs-test.o bs.o mylib.o
+common_objs = mylib.o
+sort_objs = quick.o 
+search_objs = bs.o
 
 .PHONY : clean
 
-binary-search: $(objs_sort) $(objs_search)
-	cc $(objs_sort) $(objs_search) -o binary-search
+bs-test: $(sort_objs) $(search_objs) $(common_objs) bs-test.o
+	cc $(sort_objs) $(search_objs) $(common_objs) bs-test.o -o bs-test
+
+sort-test: $(sort_objs) $(common_objs) sort-test.o
+	cc $(sort_objs) $(common_objs) sort-test.o -o sort-test
+
 
 clean:
-	-rm binary-search $(objs_sort) $(objs_search)
+	-rm sort-test bs-test $(sort_objs) $(search_objs) $(common_objs)
 
