@@ -19,7 +19,8 @@
 #include <time.h>
 
 #include "mylib.h"
-#include "quick.h"
+// #include "quick.h"
+#include "merge.h"
 
 
 int main() {
@@ -27,7 +28,7 @@ int main() {
     srand(time(NULL));
     for (int i = 0; i < 10; i++)
         a[i] = rand() % 100;
-
     printArray(a, 10);
-    quick(a, 10);
+
+    mergeSort(a, 10);
 }

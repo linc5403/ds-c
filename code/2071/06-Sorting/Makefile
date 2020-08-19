@@ -1,7 +1,7 @@
 all: bs-test sort-test
 
 common_objs = mylib.o
-sort_objs = quick.o 
+sort_objs = quick.o merge.o
 search_objs = bs.o
 
 .PHONY : clean
