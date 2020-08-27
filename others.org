@@ -199,7 +199,6 @@
 
 ** Sub O(N*log(N))
    对于N个元素的比较排序, 算法的时间复杂度不可能小于N*log(N), 但是非比较排序则可能低于这个量级.
-
 *** CountingSort
     对于要排序的元素其分布在一个较小的区间中时, 可使用CountingSort. 因为只是对于数字的排序, 所以没有多大的使用价值.
     
@@ -309,7 +308,6 @@
 
     Radix sort takes in a list of n integers which are in base b (the radix) and so each number has at most d digits where d = \lfloor(\log_b(k) +1)\rfloor and k is the largest number in the list. For example, three digits are needed to represent decimal 104 (in base 10). It is important that radix sort can work with any base since the running time of the algorithm, O(d(n+b)), depends on the base it uses.
 * Search
-
 ** Linear Search
    [[file:./img/c07f001.jpg]]
 
