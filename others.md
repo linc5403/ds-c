@@ -1,68 +1,77 @@
 
 # Table of Contents
 
-1.  [Sort](#org529c9b5)
-    1.  [O(N<sup>2</sup>))](#orge851c8a)
-        1.  [SelectSort](#org5e60333)
-        2.  [InsertSort](#org22d5244)
-        3.  [BubbleSort](#org3500aca)
-    2.  [O(N\*log(N))](#org674806b)
-        1.  [QuickSort](#orga521f14)
-        2.  [MergeSort](#orge82677c)
-        3.  [HeapSort](#orga29fc72)
-    3.  [Sub O(N\*log(N))](#org82ebead)
-        1.  [CountingSort](#org68c0d55)
-        2.  [PIGEONHOLE SORT(鸽巢排序)](#org36cde65)
-        3.  [BucketSort](#org1ae8e9d)
-        4.  [RadixSort](#org81645c1)
-2.  [Search](#org5d487c9)
-    1.  [Linear Search](#org867f904)
-    2.  [Binary Search](#orgfc6e675)
-    3.  [Interpolation Search(插值搜索)](#org6508d8d)
-    4.  [Majority Voting](#org54b0d76)
+1.  [Sort](#orgc4a2a88)
+    1.  [O(N<sup>2</sup>))](#org128fdb6)
+        1.  [SelectSort](#orgeccf128)
+        2.  [InsertSort](#orge2734e8)
+        3.  [BubbleSort](#org7da93c9)
+    2.  [O(N\*log(N))](#orgf8adc3a)
+        1.  [QuickSort](#org8f9e0b7)
+        2.  [MergeSort](#org30e4418)
+        3.  [HeapSort](#org8e9f4ed)
+    3.  [Sub O(N\*log(N))](#orgdb9c3b8)
+        1.  [CountingSort](#orgbc78d53)
+        2.  [PIGEONHOLE SORT(鸽巢排序)](#org35c6a86)
+        3.  [BucketSort](#orgc84ae7c)
+        4.  [RadixSort](#orga3b3eca)
+2.  [Search](#org487d746)
+    1.  [Linear Search](#orgb89a25c)
+    2.  [Binary Search](#org031296a)
+    3.  [Interpolation Search(插值搜索)](#orge5bb467)
+    4.  [Majority Voting](#orgc17c761)
+3.  [Hash Tables](#org05b7cb0)
+    1.  [Chaining](#orgf08a11b)
+    2.  [Open Addressing](#org01bb176)
+        1.  [REMOVING ITEMS](#orge984a26)
+        2.  [LINEAR PROBING](#org9ea185f)
+        3.  [QUADRATIC PROBING](#org043d7a3)
+        4.  [PSEUDORANDOM PROBING](#org5ee2b2f)
+        5.  [DOUBLE HASHING](#org36e3cb9)
+        6.  [ORDERED HASHING](#org93c5fc3)
 
 
-<a id="org529c9b5"></a>
+<a id="orgc4a2a88"></a>
 
 # Sort
 
 
-<a id="orge851c8a"></a>
+<a id="org128fdb6"></a>
 
 ## O(N<sup>2</sup>))
 
 
-<a id="org5e60333"></a>
+<a id="orgeccf128"></a>
 
 ### SelectSort
 
 
-<a id="org22d5244"></a>
+<a id="orge2734e8"></a>
 
 ### InsertSort
 
 
-<a id="org3500aca"></a>
+<a id="org7da93c9"></a>
 
 ### BubbleSort
 
 
-<a id="org674806b"></a>
+<a id="orgf8adc3a"></a>
 
 ## O(N\*log(N))
 
 
-<a id="orga521f14"></a>
+<a id="org8f9e0b7"></a>
 
 ### QuickSort
 
 
-<a id="orge82677c"></a>
+<a id="org30e4418"></a>
 
 ### MergeSort
 
 
-<a id="orga29fc72"></a>
+<a id="org8e9f4ed"></a>
 
 ### HeapSort
 
@@ -238,14 +247,14 @@
         因此, HeapSort的时间复杂度为N\*log(N) + N\*log(N); 亦即N\*log(N)
 
 
-<a id="org82ebead"></a>
+<a id="orgdb9c3b8"></a>
 
 ## Sub O(N\*log(N))
 
 对于N个元素的比较排序, 算法的时间复杂度不可能小于N\*log(N), 但是非比较排序则可能低于这个量级.
 
 
-<a id="org68c0d55"></a>
+<a id="orgbc78d53"></a>
 
 ### CountingSort
 
@@ -283,7 +292,7 @@
 时间复杂度为O(2\*N + M) = O(N), 远低于O(N\*log(N)).
 
 
-<a id="org36cde65"></a>
+<a id="org35c6a86"></a>
 
 ### PIGEONHOLE SORT(鸽巢排序)
 
@@ -292,6 +301,7 @@
 1.  可以保存对象
 2.  减小空间
 
+    
     PigeonholeSort(Integer: values[], Integer: max)
         // Make the pigeonholes.
         Cell: pigeonholes[] = new Cell[max + 1]
@@ -328,7 +338,7 @@
 时间复杂度: O(N)
 
 
-<a id="org1ae8e9d"></a>
+<a id="orgc84ae7c"></a>
 
 ### BucketSort
 
@@ -352,7 +362,7 @@ O(N) + O(M\*F(N/M)) + O(N) = O(N+M) = O(N)
 注意: 桶的数目M不能过小, 否则失去桶排序的意义.
 
 
-<a id="org81645c1"></a>
+<a id="orga3b3eca"></a>
 
 ### RadixSort
 
@@ -361,26 +371,26 @@ O(N) + O(M\*F(N/M)) + O(N) = O(N+M) = O(N)
 Radix sort takes in a list of n integers which are in base b (the radix) and so each number has at most d digits where d = &lfloor;(log<sub>b</sub>(k) +1)&rfloor; and k is the largest number in the list. For example, three digits are needed to represent decimal 104 (in base 10). It is important that radix sort can work with any base since the running time of the algorithm, O(d(n+b)), depends on the base it uses.
 
 
-<a id="org5d487c9"></a>
+<a id="org487d746"></a>
 
 # Search
 
 
-<a id="org867f904"></a>
+<a id="orgb89a25c"></a>
 
 ## Linear Search
 
 ![img](./img/c07f001.jpg)
 
 
-<a id="orgfc6e675"></a>
+<a id="org031296a"></a>
 
 ## Binary Search
 
 ![img](./img/c07f002.jpg)
 
 
-<a id="org6508d8d"></a>
+<a id="orge5bb467"></a>
 
 ## Interpolation Search(插值搜索)
 
@@ -405,7 +415,7 @@ Radix sort takes in a list of n integers which are in base b (the radix) and so 
     End InterpolationSearch 
 
 
-<a id="org54b0d76"></a>
+<a id="orgc17c761"></a>
 
 ## Majority Voting
 
@@ -429,4 +439,59 @@ Radix sort takes in a list of n integers which are in base b (the radix) and so 
     
         Return majority
     End BoyerMooreVote 
+
+
+<a id="org05b7cb0"></a>
+
+# Hash Tables
+
+-   A data structure to hold the data
+-   A hashing function to map keys to locations in the data structure
+-   A collision-resolution policy that specifies what to do when keys collide
+
+
+<a id="orgf08a11b"></a>
+
+## Chaining
+
+A hash table with chaining uses a collection of entries called buckets to hold key values. Each bucket is the top of a linked list holding the items that map to that bucket.
+
+Typically the buckets are arranged in an array, so you can use a simple hashing function to determine a key's bucket. For example, if you have N buckets and the keys are numeric, you could map the key K to bucket number K mod N.
+
+![img](./img/hash-1.jpg)
+
+
+<a id="org01bb176"></a>
+
+## Open Addressing
+
+
+<a id="orge984a26"></a>
+
+### REMOVING ITEMS
+
+
+<a id="org9ea185f"></a>
+
+### LINEAR PROBING
+
+
+<a id="org043d7a3"></a>
+
+### QUADRATIC PROBING
+
+
+<a id="org5ee2b2f"></a>
+
+### PSEUDORANDOM PROBING
+
+
+<a id="org36e3cb9"></a>
+
+### DOUBLE HASHING
+
+
+<a id="org93c5fc3"></a>
+
+### ORDERED HASHING
 
