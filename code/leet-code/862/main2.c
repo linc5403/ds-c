@@ -8,6 +8,9 @@
 
 #include "LinkedQueue.h"
 
+int shortestSubarray(int* A, int ASize, int K);
+int findFirst(int* a, int size, int k, int* begin, int* end);
+
 // 从a开始，查找第一个>=K的子序列
 int findFirst(int* a, int size, int k, int* begin, int* end) {
     int first = 0; int last = 0; int sum = a[0];
@@ -40,17 +43,20 @@ int findFirst(int* a, int size, int k, int* begin, int* end) {
 
 int shortestSubarray(int* A, int ASize, int K){
     int begin, end;
-    int find = findFirst(a, size, k, begin, end);
+    int find = findFirst(A, ASize, K, &begin, &end);
     if (find) {
         // 找到第一个子序列>=k
         int currentLen =  end - begin + 1;
+        int sum = 0;
+        for (int i = begin; i <= end; i++)
+            sum += A[i];
         // 试图查找下一个可以的尺寸
         int try = currentLen-1;
+        sum = sum - A[begin];
         begin++;
-        while (end < ASize) {
-
-        }
-
+        do {
+            if 
+        } while(end < ASize);
     } else
         return -1;
 }

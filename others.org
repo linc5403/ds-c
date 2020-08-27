@@ -362,3 +362,32 @@
      End BoyerMooreVote 
    #+end_example
 
+* Hash Tables
+  - A data structure to hold the data
+  - A hashing function to map keys to locations in the data structure
+  - A collision-resolution policy that specifies what to do when keys collide
+
+** Chaining
+
+   A hash table with chaining uses a collection of entries called buckets to hold key values. Each bucket is the top of a linked list holding the items that map to that bucket.
+
+   Typically the buckets are arranged in an array, so you can use a simple hashing function to determine a key's bucket. For example, if you have N buckets and the keys are numeric, you could map the key K to bucket number K mod N.
+
+   [[file:./img/hash-1.jpg]]
+
+** Open Addressing
+   
+   
+*** REMOVING ITEMS
+    
+*** LINEAR PROBING
+
+*** QUADRATIC PROBING
+
+*** PSEUDORANDOM PROBING
+
+*** DOUBLE HASHING
+
+*** ORDERED HASHING
+
+
